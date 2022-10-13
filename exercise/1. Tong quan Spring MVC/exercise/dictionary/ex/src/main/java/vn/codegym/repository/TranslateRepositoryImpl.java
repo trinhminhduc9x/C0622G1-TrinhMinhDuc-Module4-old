@@ -12,10 +12,10 @@ public class TranslateRepositoryImpl implements TranslateRepository {
     static {
         dictionaryStock.put("name", "tên");
         dictionaryStock.put("age", "tuổi");
-        dictionaryStock.put("liver", "gan");
-        dictionaryStock.put("viscera", "phèo");
-        dictionaryStock.put("appendix", "ruột thừa");
-        dictionaryStock.put("pancreas", "tuỵ");
+        dictionaryStock.put("love", "yêu");
+        dictionaryStock.put("hate", "ghét");
+        dictionaryStock.put("horror", "ghê");
+        dictionaryStock.put("sad", "buồn");
     }
 
     @Override
