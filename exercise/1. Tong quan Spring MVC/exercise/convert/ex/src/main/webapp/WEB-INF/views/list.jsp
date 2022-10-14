@@ -6,16 +6,16 @@
 </head>
 <body>
 <h2>Currency Converter</h2>
-<form action="/convert" >
+<form action="/convert">
     <label>Rate: </label><br/>
     <input type="number" name="rate" value="${rate}"/><br/>
     <label>USD: </label><br/>
     <input type="number" name="usd" value="${usd}"/><br/>
     <label>convert </label><br/>
-    <input type="submit"  value="convert"/><br/>
+    <input type="submit" value="convert"/><br/>
 </form>
 
 <label>VND:</label>
-<input type="number" value="${vnd}" >
+<input type="number" value="${vnd}">
 </body>
 </html>
