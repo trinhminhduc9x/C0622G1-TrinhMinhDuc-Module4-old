@@ -8,18 +8,18 @@ public class CalculatorServiceImpl implements CalculatorService {
 
 
     @Override
-    public int calculate(int firstOperand, int secondOperand, char operator) {
+    public double calculate(String firstOperand, String secondOperand, String operator) {
 
         switch (operator){
-            case '+':
-                return firstOperand + secondOperand;
-            case '-':
-                return firstOperand - secondOperand;
-            case '*':
-                return firstOperand * secondOperand;
-            case '/':
-                if(secondOperand != 0)
-                    return firstOperand / secondOperand;
+            case "+":
+                return Double.parseDouble(firstOperand) +  Double.parseDouble(secondOperand) ;
+            case "-":
+                return Double.parseDouble(firstOperand) -  Double.parseDouble(secondOperand) ;
+            case "*":
+                return Double.parseDouble(firstOperand) *  Double.parseDouble(secondOperand) ;
+            case "/":
+                if(Integer.parseInt(secondOperand) != 0)
+                    return Double.parseDouble(firstOperand) /  Double.parseDouble(secondOperand) ;
                 else
                     throw new RuntimeException("Can't divide by zero");
             default:

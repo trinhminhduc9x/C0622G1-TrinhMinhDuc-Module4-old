@@ -12,8 +12,8 @@ import vn.codegym.service.CalculatorService;
 @Controller
 @RequestMapping()
 public class CalculatorController {
-    int kq = 0;
-
+    double kq = 0;
+    String result ="";
     @Autowired
     private CalculatorService calculatorService;
 
@@ -22,16 +22,14 @@ public class CalculatorController {
         return "list";
     }
 
-    @PostMapping("/ Calculator")
-    public String vnd(@RequestParam("first-operand") int firstOperand, @RequestParam("second-operand") int secondOperand, @RequestParam("operator") char operator, Model model) {
+    @GetMapping("/Calculator")
+    public String vnd(@RequestParam("first-operand") String firstOperand, @RequestParam("second-operand") String secondOperand, @RequestParam("operator") String operator, Model model) {
         kq = this.calculatorService.calculate(firstOperand, secondOperand, operator);
-        model.addAttribute("kq", kq);
+        result = kq +"";
+        model.addAttribute("result", result);
         model.addAttribute("firstOperand", firstOperand);
         model.addAttribute("secondOperand", secondOperand);
-
-
         return "list";
-
     }
 
 }

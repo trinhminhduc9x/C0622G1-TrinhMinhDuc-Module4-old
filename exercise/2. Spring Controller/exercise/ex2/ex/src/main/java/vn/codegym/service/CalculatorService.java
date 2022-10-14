@@ -2,6 +2,6 @@ package vn.codegym.service;
 
 public interface CalculatorService {
 
-     int calculate(int firstOperand, int secondOperand, char operator);
+     double calculate(String firstOperand, String secondOperand, String operator);
 
 }

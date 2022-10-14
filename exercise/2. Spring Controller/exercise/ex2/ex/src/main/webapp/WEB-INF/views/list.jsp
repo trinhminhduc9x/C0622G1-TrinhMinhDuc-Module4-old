@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Simple Calculator</h1>
-<form method="post" action="/calculate">
+<form method="get" action="/Calculator">
     <fieldset>
         <legend>Calculator</legend>
         <table>
@@ -16,7 +16,7 @@
             <tr>
                 <td>Operator: </td>
                 <td>
-                    <select name="operator">
+                    <select name="operator"  >
                         <option value="+">Addition</option>
                         <option value="-">Subtraction</option>
                         <option value="*">Multiplication</option>
@@ -36,7 +36,7 @@
     </fieldset>
 </form>
         <span>
-            Result : ${kq}
+            Result : ${result}
         </span>
 </body>
 </html>
