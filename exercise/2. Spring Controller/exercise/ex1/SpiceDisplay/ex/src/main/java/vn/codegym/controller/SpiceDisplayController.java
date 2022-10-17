@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SpiceDisplayController {
 
 
-@GetMapping("/")
-public String home(){
-    return "/list";
-}
-@PostMapping("/save")
+    @GetMapping("/")
+    public String home() {
+        return "/list";
+    }
+
+    @PostMapping("/save")
     public String save(@RequestParam("name") String[] name, Model model) {
-            model.addAttribute("name", name);
-            return "/list";
+        model.addAttribute("name", name);
+        return "/list";
 
     }
 

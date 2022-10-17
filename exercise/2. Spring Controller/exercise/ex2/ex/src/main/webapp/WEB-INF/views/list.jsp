@@ -5,18 +5,18 @@
 </head>
 <body>
 <h1>Simple Calculator</h1>
-<form method="get" action="/Calculator">
+<form method="get" action="/calculator">
     <fieldset>
         <legend>Calculator</legend>
         <table>
             <tr>
-                <td>First operand: </td>
+                <td>First operand:</td>
                 <td><input name="first-operand" type="text" value="${firstOperand}"/></td>
             </tr>
             <tr>
-                <td>Operator: </td>
+                <td>Operator:</td>
                 <td>
-                    <select name="operator"  >
+                    <select name="operator">
                         <option value="+">Addition</option>
                         <option value="-">Subtraction</option>
                         <option value="*">Multiplication</option>
@@ -25,7 +25,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Second operand: </td>
+                <td>Second operand:</td>
                 <td><input name="second-operand" type="text" value="${secondOperand}"/></td>
             </tr>
             <tr>
@@ -35,7 +35,7 @@
         </table>
     </fieldset>
 </form>
-        <span>
+<span>
             Result : ${result}
         </span>
 </body>

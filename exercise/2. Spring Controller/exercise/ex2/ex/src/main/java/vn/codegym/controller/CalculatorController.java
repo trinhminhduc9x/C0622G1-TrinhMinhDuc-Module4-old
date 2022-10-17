@@ -13,7 +13,7 @@ import vn.codegym.service.CalculatorService;
 @RequestMapping()
 public class CalculatorController {
     double kq = 0;
-    String result ="";
+    String result = "";
     @Autowired
     private CalculatorService calculatorService;
 
@@ -22,10 +22,9 @@ public class CalculatorController {
         return "list";
     }
 
-    @GetMapping("/Calculator")
+    @GetMapping("/calculator")
     public String vnd(@RequestParam("first-operand") String firstOperand, @RequestParam("second-operand") String secondOperand, @RequestParam("operator") String operator, Model model) {
-        kq = this.calculatorService.calculate(firstOperand, secondOperand, operator);
-        result = kq +"";
+        result = this.calculatorService.calculate(firstOperand, secondOperand, operator) + "";
         model.addAttribute("result", result);
         model.addAttribute("firstOperand", firstOperand);
         model.addAttribute("secondOperand", secondOperand);
