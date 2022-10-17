@@ -14,7 +14,7 @@ public class MailBoxRepositoryImpl implements IMailboxRepository {
         mailBoxList = new ArrayList<>();
         mailBoxList.add(new MailBox("Anh", 1, true, "JAVA"));
         mailBoxList.add(new MailBox("Viet", 1, false, "C#"));
-        mailBoxList.add(new MailBox("trung", 1, true, "C#"));
+        mailBoxList.add(new MailBox("Trung", 1, true, "C#"));
 
     }
 
