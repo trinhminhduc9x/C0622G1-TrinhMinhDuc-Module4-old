@@ -12,35 +12,34 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<form action="/student/create" method="get">
+<form action="/mailbox/create" method="get">
     <button type="submit">Them moi</button>
 </form>
 
 <h3 style="color: green"> ${message}</h3>
-<form action="/student/search" method="get">
+
+<form action="/mailbox/search" method="get">
     <input type="text" name="kq">
     <button type="submit">commit</button>
 </form>
+
+
 <table class="table">
     <thead>
     <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Gender</th>
-        <th>Language</th>
+        <th>languages</th>
+        <th>page</th>
+        <th>spams</th>
+        <th>signature</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${studentList}" var="student">
+    <c:forEach items="${mailBoxList}"  var="mailBox">
         <tr>
-            <td>${student.id}</td>
-            <td>${student.name}</td>
-            <td>${student.gender}</td>
-            <td>
-                <c:forEach items="${student.languages}" var="lang">
-                    <span>${lang}</span>
-                </c:forEach>
-            </td>
+            <td>${mailBox.languages}</td>
+            <td>${mailBox.page}</td>
+            <td>${mailBox.spams}</td>
+            <td>${mailBox.signature}</td>
         </tr>
     </c:forEach>
     </tbody>

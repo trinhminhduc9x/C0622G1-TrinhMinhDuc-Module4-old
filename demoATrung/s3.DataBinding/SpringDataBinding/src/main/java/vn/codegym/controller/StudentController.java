@@ -74,17 +74,16 @@ public class StudentController {
 
         model.addAttribute("student", new Student());
         model.addAttribute("languageList", languageList);
-        return "cerate";
+        return "create";
 
     }
 
-    @PostMapping("/cerate")
-    public String cerateStudent(@MatrixVariable Student student,
+    @PostMapping("/create")
+    public String createStudent(@ModelAttribute Student student,
                                 RedirectAttributes redirectAttributes) {
         studentService.save(student);
         redirectAttributes.addFlashAttribute("message", "createStudent : " + student.getName() + "OK");
-        return "redicrect:/student";
+        return "redirect:/student";
+//        return "forward:/student";
     }
-
-
 }
