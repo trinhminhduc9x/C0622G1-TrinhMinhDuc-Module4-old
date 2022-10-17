@@ -34,7 +34,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${mailBoxList}" var="mailBox">
+    <c:forEach items="${mailBoxList}"  var="mailBox">
         <tr>
             <td>${mailBox.languages}</td>
             <td>${mailBox.page}</td>

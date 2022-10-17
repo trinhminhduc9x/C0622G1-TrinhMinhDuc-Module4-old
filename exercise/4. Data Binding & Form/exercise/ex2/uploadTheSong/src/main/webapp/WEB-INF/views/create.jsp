@@ -15,22 +15,22 @@
     <table>
         <tr>
             languages :
-            <form:select path="languages">
-                <form:option value="Anh">Anh</form:option>
-                <form:option value="Trung Quoc">Trung</form:option>
-                <form:option value="Viet Nam">Viet</form:option>
-            </form:select>
-        </tr>
+                <form:select path="languages">
+                    <form:option  value="Anh">Anh</form:option>
+                    <form:option  value="Trung Quoc">Trung</form:option>
+                    <form:option  value="Viet Nam">Viet</form:option>
+                </form:select>
+       </tr>
         <tr>
             <td>page</td>
             <td>
                 <form:select path="page">
-                    <form:option value="10">10</form:option>
-                    <form:option value="20">20</form:option>
-                    <form:option value="30">30</form:option>
-                    <form:option value="40">40</form:option>
-                    <form:option value="50">50</form:option>
-                    <form:option value="60">60</form:option>
+                    <form:option  value="10">10</form:option>
+                    <form:option  value="20">20</form:option>
+                    <form:option  value="30">30</form:option>
+                    <form:option  value="40">40</form:option>
+                    <form:option  value="50">50</form:option>
+                    <form:option  value="60">60</form:option>
                 </form:select>
             </td>
         </tr>

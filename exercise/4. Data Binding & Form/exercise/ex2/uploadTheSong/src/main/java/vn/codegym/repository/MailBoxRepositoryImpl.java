@@ -12,9 +12,9 @@ public class MailBoxRepositoryImpl implements IMailboxRepository {
 
     static {
         mailBoxList = new ArrayList<>();
-        mailBoxList.add(new MailBox("Anh", 1, true, "JAVA"));
-        mailBoxList.add(new MailBox("Viet", 1, false, "C#"));
-        mailBoxList.add(new MailBox("trung", 1, true, "C#"));
+        mailBoxList.add(new MailBox("Anh",1,true, "JAVA"));
+        mailBoxList.add(new MailBox("Viet",1,false,  "C#"));
+        mailBoxList.add(new MailBox("trung",1,true,  "C#"));
 
     }
 
@@ -30,8 +30,8 @@ public class MailBoxRepositoryImpl implements IMailboxRepository {
 
     public List<MailBox> findByName(String keyword) {
         List<MailBox> result = new ArrayList<>();
-        for (MailBox mailBox : mailBoxList) {
-            if (mailBox.getLanguages().contains(keyword)) {
+        for(MailBox mailBox: mailBoxList){
+            if(mailBox.getLanguages().contains(keyword)){
                 result.add(mailBox);
             }
         }
