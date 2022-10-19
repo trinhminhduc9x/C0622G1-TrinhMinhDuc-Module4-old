@@ -31,13 +31,15 @@
         <td><a th:href="@{/product/{id}/edit(id=${row.getId()})}">edit</a></td>
         <td><a th:href="@{/product/{id}/delete(id=${row.getId()})}">delete</a></td>
         <td><a th:href="@{/product/{id}/view(id=${row.getId()})}">view</a></td>
+
     </tr>
     </tbody>
-    <div class="notify">
-        <div th:if="${success}">
-            <span th:text="${success}"></span>
-        </div>
-    </div>
+<!--    <div class="notify">-->
+<!--        <div th:if="${success}">-->
+<!--            <span th:text="${success}"></span>-->
+<!--        </div>-->
+<!--    </div>-->
+
 </table>
 <footer th:replace="/layout :: footer"></footer>
 </body>
