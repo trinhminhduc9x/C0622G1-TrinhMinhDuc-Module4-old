@@ -32,7 +32,7 @@ public class ProductRepository implements vn.codegym.repository.IProductReposito
 
     @Override
     public Product findById(int id) {
-      return  entityManager.find(Product.class, id); //tìm kiếm với id
+      return  entityManager.find(Product.class, id); //tra ve 1 doi tuong voi id được nhập
     }
 
     @Override
@@ -42,7 +42,8 @@ public class ProductRepository implements vn.codegym.repository.IProductReposito
     }
 
     @Override
-    public void remove(Product product) {
+    public void remove(int id) {
+        Product product = findById(id);
         entityManager.remove(product); //xóa
     }
 }

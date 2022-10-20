@@ -19,6 +19,10 @@ public class Product {
 
     private String producer;
 
+
+    private String producerr;
+
+
     public Product() {
     }
 
