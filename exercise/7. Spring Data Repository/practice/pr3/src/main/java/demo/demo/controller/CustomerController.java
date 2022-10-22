@@ -8,6 +8,7 @@ import demo.demo.service.IProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,51 +28,62 @@ public class CustomerController {
     @Autowired
     private IProvinceService provinceService;
 
-    @ModelAttribute("provinces")
-    public Iterable<Province> provinces(){
-        return provinceService.findAll();
+    @GetMapping(value = "/list")
+    public String showStudentList(Model model) {
+        model.addAttribute("customersList", customerService.findAll());
+        return "/customer/list";
     }
 
-    @GetMapping("/create-customer")
-    public ModelAndView showCreateForm() {
-        ModelAndView modelAndView = new ModelAndView("/customer/create");
-        modelAndView.addObject("customer", new Customer());
+
+    @GetMapping("/create")
+    public String showCreatePage(Model model) {
+
+        model.addAttribute("customersList", customerService.findAll());
 
 
+        model.addAttribute("provincesList", provinceService.findAll());
 
-        return modelAndView;
+        model.addAttribute("customer", new Customer());
+        return "/customer/create";
     }
 
-    @PostMapping("/create-customer")
-    public ModelAndView saveCustomer(@ModelAttribute("customer") Customer customer) {
+    @PostMapping("/create")
+    public String createStudent(@ModelAttribute Customer customer,
+                                RedirectAttributes redirectAttributes) {
+
         customerService.save(customer);
-        ModelAndView modelAndView = new ModelAndView("/customer/create");
-        modelAndView.addObject("customer", new Customer());
-        modelAndView.addObject("message", "New customer created successfully");
-        modelAndView.addObject("provinces",provinceService.findAll());
-        return modelAndView;
+        redirectAttributes.addFlashAttribute("message",
+                "Create student: " + customer.getFirstName() + " OK!");
+        return "redirect:/list";
     }
 
-    @GetMapping("/customers")
-    public ModelAndView listCustomers() {
-        Iterable<Customer> customers = customerService.findAll();
-        ModelAndView modelAndView = new ModelAndView("/customer/list");
-        modelAndView.addObject("customers", customers);
-        return modelAndView;
+    @GetMapping("/delete-customer/{id}")
+    public String detelet(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        customerService.remove(id);
+        redirectAttributes.addFlashAttribute("new", "delte new success");
+        return "redirect:/list";
+
     }
 
     @GetMapping("/edit-customer/{id}")
-    public ModelAndView showEditForm(@PathVariable Long id) {
-        Optional<Customer> customer = customerService.findById(id);
-        if (customer.isPresent()) {
-            ModelAndView modelAndView = new ModelAndView("/customer/edit");
-            modelAndView.addObject("customer", customer.get());
-            return modelAndView;
-        } else {
-            ModelAndView modelAndView = new ModelAndView("/error.404");
-            return modelAndView;
-        }
+    public String showEditForm(@PathVariable Integer id, Model model) {
+
+        List<Province> provinceList = provinceService.findAll();
+
+        model.addAttribute("customer", customerService.findById(id));
+
+        model.addAttribute("provincesList", provinceList);
+
+
+        return "/customer/edit";
     }
+
+//    @GetMapping("/{id}/edit")
+//    public String edit(@PathVariable int id, Model model) {
+//        model.addAttribute("customer", customerService.findById(id));
+//        model.addAttribute("provinces", provinceService.findById(id));
+//        return "/customer/edit";
+//    }
 
     @PostMapping("/edit-customer")
     public ModelAndView updateCustomer(@ModelAttribute("customer") Customer customer) {
@@ -81,25 +93,4 @@ public class CustomerController {
         modelAndView.addObject("message", "Customer updated successfully");
         return modelAndView;
     }
-
-    @GetMapping("/delete-customer/{id}")
-    public ModelAndView showDeleteForm(@PathVariable Long id) {
-        Optional<Customer> customer = customerService.findById(id);
-        if (customer.isPresent()) {
-            ModelAndView modelAndView = new ModelAndView("/customer/delete");
-            modelAndView.addObject("customer", customer.get());
-            return modelAndView;
-
-        } else {
-            ModelAndView modelAndView = new ModelAndView("/error.404");
-            return modelAndView;
-        }
-    }
-
-    @PostMapping("/delete-customer")
-    public String deleteCustomer(@ModelAttribute("customer") Customer customer) {
-        customerService.remove(customer.getId());
-        return "redirect:customers";
-    }
-
 }

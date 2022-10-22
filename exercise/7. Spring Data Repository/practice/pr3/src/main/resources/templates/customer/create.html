@@ -7,12 +7,10 @@
 <body>
 <h1>Create customer</h1>
 <p>
-    <a href="/customers">Customer list</a>
+    <a href="/list">Customer list</a>
 </p>
-<th:block th:if="${message}">
-    <p th:text="${message}"></p>
-</th:block>
-<form th:action="@{/create-customer}" th:object="${customer}" method="post">
+
+<form  th:object="${customer}" method="post">
     <table>
         <tr>
             <td>First name:</td>
@@ -26,7 +24,7 @@
             <td>Province:</td>
             <td>
                 <select th:field="*{province}">
-                    <option th:each="p : ${provinces}"
+                    <option th:each="p : ${provincesList}"
                             th:value="${p.id}" th:text="${p.name}"></option>
                 </select>
             </td>
@@ -36,7 +34,6 @@
             <td><input type="submit" value="Create customer"></td>
         </tr>
     </table>
-
 </form>
 </body>
 </html>

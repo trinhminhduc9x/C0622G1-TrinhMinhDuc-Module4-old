@@ -1,10 +1,7 @@
 package com.spring_boot.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -18,6 +15,12 @@ public class Product {
     private String price;
 
     private String producer;
+
+
+    @ManyToOne
+    @JoinColumn(name ="product_id",referencedColumnName = "id")
+    private Category category;
+
 
     public Product() {
     }
@@ -52,6 +55,14 @@ public class Product {
 
     public void setProducer(String producer) {
         this.producer = producer;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

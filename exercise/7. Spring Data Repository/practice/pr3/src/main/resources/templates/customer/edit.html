@@ -9,9 +9,7 @@
 <p>
     <a href="/customers">Customer list</a>
 </p>
-<th:block th:if="${message}">
-    <p th:text="${message}"></p>
-</th:block>
+
 <form th:action="@{/edit-customer}" th:object="${customer}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
@@ -26,11 +24,9 @@
         <tr>
             <td>Province:</td>
             <td>
-                <select name="province">
-                    <option th:each="p : ${provinces}"
-                            th:value="${p.id}"
-                            th:text="${p.name}"
-                            th:selected="(${customer.province}) and (${p.id} == *{province.id})"></option>
+                <select th:field="*{province}">
+                    <option th:each="p : ${provincesList}"
+                            th:value="${p.id}" th:text="${p.name}"></option>
                 </select>
             </td>
         </tr>

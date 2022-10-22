@@ -1,7 +1,8 @@
-package com.spring_boot.service;
+package com.spring_boot.service.impl;
 
 import com.spring_boot.model.Product;
 import com.spring_boot.repository.IProductRepository;
+import com.spring_boot.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,27 +40,5 @@ public class ProductService implements IProductService {
     public void remove(int id) {
         repository.deleteById(id);
     }
-
-//    @Override
-//    public void save(Product product) {
-//        repository.save(product);
-//    }
-//
-//    @Override
-//    public Product findById(int id) {
-//       return repository.findById(id);
-//    }
-//
-//
-//    @Override
-//    public void update(Product product) {
-//        repository.merge(product);
-//    }
-//
-//    @Override
-//    public void remove(int id) {
-//        repository.remove(id);
-//    }
-
 
 }

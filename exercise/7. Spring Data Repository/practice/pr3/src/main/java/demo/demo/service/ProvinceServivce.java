@@ -6,7 +6,9 @@ import demo.demo.repository.IProvinceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class ProvinceServivce implements IProvinceService {
@@ -15,13 +17,8 @@ public class ProvinceServivce implements IProvinceService {
 
 
     @Override
-    public Iterable<Province> findAll() {
+    public List<Province> findAll() {
         return repository.findAll();
-    }
-
-    @Override
-    public Optional<Province> findById(Long id) {
-        return Optional.empty();
     }
 
     @Override
@@ -30,7 +27,13 @@ public class ProvinceServivce implements IProvinceService {
     }
 
     @Override
-    public void remove(Long id) {
-        repository.deleteById(id);
+    public List<Province> findByName(String keyword) {
+        return null;
     }
+
+    @Override
+    public Optional<Province> findById(int id) {
+        return repository.findById(id);
+    }
+
 }

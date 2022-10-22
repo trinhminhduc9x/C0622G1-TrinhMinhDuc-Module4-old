@@ -1,18 +1,19 @@
 package demo.demo.service;
 
 import demo.demo.model.Customer;
-import demo.demo.model.Province;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ICustomerService  {
-    Iterable<Customer> findAll();
-
-    Optional<Customer> findById(Long id);
+    List<Customer> findAll();
 
     void save(Customer customer);
 
-    void remove(Long id);
+    List<Customer> findByName(String keyword);
 
-    Iterable<Customer> findAllByProvince(Province province);
+    void remove(int id);
+
+    Optional<Customer> findById(int id);
+
 }

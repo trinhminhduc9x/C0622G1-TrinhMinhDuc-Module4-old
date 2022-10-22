@@ -4,42 +4,27 @@ package demo.demo.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private String firstName;
     private String lastName;
 
+
+    @ManyToOne
+    @JoinColumn(name = "province_id",referencedColumnName = "id")
+    private Province province;
+
     public Customer() {
     }
 
-
-
-    @ManyToOne
-    @JoinColumn(name = "province_id")
-    private Province province;
-
-    public Province getProvince() {
-        return province;
-    }
-
-    public void setProvince(Province province) {
-        this.province = province;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -59,4 +44,11 @@ public class Customer {
         this.lastName = lastName;
     }
 
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
+    }
 }
