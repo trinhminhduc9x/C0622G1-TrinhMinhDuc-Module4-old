@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/layout :: head"></head>
+<head th:replace="/blog/layout :: head">
 <body>
 <h3>View blog</h3>
 <p>
@@ -9,20 +9,24 @@
     </a>
 </p>
 <div id="detail">
-    <div class="name">
+    <div>
         <label>Name:</label>
         <label th:text="${blog.name}"></label>
     </div>
-    <div class="price">
-        <label>price:</label>
-        <label th:text="${blog.price}"></label>
+    <div >
+        <label>content:</label>
+        <label th:text="${blog.content}"></label>
     </div>
-    <div class="producer">
-        <label>Address:</label>
-        <label th:text="${blog.producer}"></label>
+    <div >
+        <label>note:</label>
+        <label th:text="${blog.note}"></label>
+    </div>
+    <div >
+        <label>category:</label>
+        <label th:text="${blog.category.name}"></label>
     </div>
 </div>
-<footer th:replace="/layout :: footer"></footer>
+<footer th:replace="/blog/layout :: footer"></footer>
 </body>
 </html>
 

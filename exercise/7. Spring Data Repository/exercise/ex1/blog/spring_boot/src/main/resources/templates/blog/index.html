@@ -21,8 +21,8 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>price</th>
-        <th>producer</th>
+        <th>content</th>
+        <th>note</th>
         <th>Category</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -30,12 +30,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="blog : ${productList}">
+    <tr th:each="blog : ${blogList}">
         <td th:text="${blog.id}"></td>
         <td th:text="${blog.name}"></td>
-        <td th:text="${blog.price}"></td>
-        <td th:text="${blog.producer}"></td>
-        <td th:if="${blog.category}" th:text="${blog.category.name}"  ></td>
+        <td th:text="${blog.content}"></td>
+        <td th:text="${blog.note}"></td>
+        <td th:text="${blog.category.name}" ></td>
         <td><a th:href="@{/blog/{id}/edit(id=${blog.id})}">edit</a></td>
         <td>
             <!-- Button trigger modal -->

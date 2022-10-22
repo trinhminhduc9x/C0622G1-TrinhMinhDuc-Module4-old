@@ -12,15 +12,22 @@ public class Blog {
 
     private String name;
 
-    private String price;
+    private String content;
 
-    private String producer;
+    private String note;
 
 
     @ManyToOne
-    @JoinColumn(name ="product_id",referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Category category;
 
+    public Blog(int id, String name, String content, String note, Category category) {
+        this.id = id;
+        this.name = name;
+        this.content = content;
+        this.note = note;
+        this.category = category;
+    }
 
     public Blog() {
     }
@@ -41,20 +48,20 @@ public class Blog {
         this.name = name;
     }
 
-    public String getPrice() {
-        return price;
+    public String getContent() {
+        return content;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getProducer() {
-        return producer;
+    public String getNote() {
+        return note;
     }
 
-    public void setProducer(String producer) {
-        this.producer = producer;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public Category getCategory() {
@@ -65,13 +72,5 @@ public class Blog {
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", producer='" + producer + '\'' +
-                '}';
-    }
+
 }

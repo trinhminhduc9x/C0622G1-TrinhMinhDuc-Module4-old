@@ -26,7 +26,7 @@ public class BlogController {
 
     @GetMapping("/list")
     public String showStudentList(Model model) {
-        model.addAttribute("productList", blogService.findAll());
+        model.addAttribute("blogList", blogService.findAll());
 
         return "/blog/index";
     }
@@ -37,32 +37,27 @@ public class BlogController {
         List<Category> categoryList = categoryService.findAll();
 
 
-
         model.addAttribute("categoryList", categoryList);
 
 
-        model.addAttribute("blog",new Blog());
+        model.addAttribute("blog", new Blog());
 
 
         return "/blog/create";
     }
 
     @PostMapping("/save")
-    public String save(Blog blog, Model model) {
-
-
-
-        model.addAttribute("product",new Blog());
+    public String save(@ModelAttribute Blog blog) {
 
         blogService.save(blog);
-
 
         return "redirect:/blog/list";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable int id, Model model) {
-        model.addAttribute("product", blogService.findById(id));
+        model.addAttribute("blog", blogService.findById(id));
+        model.addAttribute("categoryList", categoryService.findAll());
         return "/blog/edit";
     }
 
@@ -81,7 +76,7 @@ public class BlogController {
 
     @GetMapping("/{id}/view")
     public String view(@PathVariable int id, Model model) {
-        model.addAttribute("product", blogService.findById(id));
+        model.addAttribute("blog", blogService.findById(id));
         return "/blog/view";
     }
 

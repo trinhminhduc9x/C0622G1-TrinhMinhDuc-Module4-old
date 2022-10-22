@@ -10,7 +10,7 @@ public interface ICategoryService {
 
     void save(Category category);
 
-    Optional<Category> findById(int id);
+   Category findById(Integer id);
 
     void update(Category category);
 

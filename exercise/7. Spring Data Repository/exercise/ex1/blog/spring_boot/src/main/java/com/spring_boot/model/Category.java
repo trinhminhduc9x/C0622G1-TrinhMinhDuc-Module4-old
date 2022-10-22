@@ -17,6 +17,14 @@ public class Category {
     public Category() {
     }
 
+    public Set<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(Set<Blog> blogs) {
+        this.blogs = blogs;
+    }
+
     public int getId() {
         return id;
     }
@@ -33,11 +41,9 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Blog> getProducts() {
-        return blogs;
-    }
-
-    public void setProducts(Set<Blog> blogs) {
+    public Category(int id, String name, Set<Blog> blogs) {
+        this.id = id;
+        this.name = name;
         this.blogs = blogs;
     }
 }

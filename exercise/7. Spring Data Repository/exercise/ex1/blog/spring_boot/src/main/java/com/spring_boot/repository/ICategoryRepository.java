@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ICategoryRrpository extends JpaRepository<Category, Integer> {
+public interface ICategoryRepository extends JpaRepository<Category, Integer> {
     List<Blog> findByName(String keyword);
     List<Blog> findByNameContaining(String keyword);
 

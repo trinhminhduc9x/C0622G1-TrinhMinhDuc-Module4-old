@@ -1,7 +1,7 @@
 package com.spring_boot.service.impl;
 
 import com.spring_boot.model.Category;
-import com.spring_boot.repository.ICategoryRrpository;
+import com.spring_boot.repository.ICategoryRepository;
 import com.spring_boot.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class CategoryService implements ICategoryService {
     @Autowired
-    private ICategoryRrpository repository;
+    private ICategoryRepository repository;
 
     @Override
     public List<Category> findAll() {
@@ -25,8 +25,8 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public Optional<Category> findById(int id) {
-        return Optional.empty();
+    public Category findById(Integer id) {
+        return repository.findById(id).orElse(new Category());
     }
 
     @Override
