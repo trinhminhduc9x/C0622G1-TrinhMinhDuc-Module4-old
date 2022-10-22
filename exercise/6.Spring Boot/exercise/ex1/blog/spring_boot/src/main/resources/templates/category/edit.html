@@ -4,12 +4,12 @@
 <body>
 <h3>Edit Customer</h3>
 <p>
-    <a th:href="@{/product}">
-        Back to product list
+    <a th:href="@{/blog}">
+        Back to blog list
     </a>
 </p>
 <div id="form">
-    <form action="#" th:action="@{/product/update}" th:object="${product}"
+    <form action="#" th:action="@{/blog/update}" th:object="${blog}"
           method="POST" novalidate="novalidate">
         <input type="hidden" th:field="*{id}"/>
         <div>
