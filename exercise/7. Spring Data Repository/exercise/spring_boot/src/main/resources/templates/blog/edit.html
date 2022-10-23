@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/blog/layout :: head">
+<head th:replace="/layout :: head">
 <body>
-<h3>Add Product</h3>
+<h3>Edit Customer</h3>
 <p>
     <a th:href="@{/blog/list}">
         Back to blog list
     </a>
 </p>
 <div id="form">
-    <form th:action="@{/blog/save}" th:object="${blog}"
+    <form th:action="@{/blog/update}" th:object="${blog}"
           method="POST" novalidate="novalidate">
         <input type="hidden" th:field="*{id}"/>
         <div>
@@ -35,6 +35,6 @@
         <input type="submit" value="Save"/>
     </form>
 </div>
-<footer th:replace="/blog/layout :: footer"></footer>
+<footer th:replace="/layout :: footer"></footer>
 </body>
 </html>
