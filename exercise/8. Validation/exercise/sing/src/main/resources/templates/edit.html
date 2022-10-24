@@ -14,15 +14,26 @@
         <input type="hidden" th:field="*{id}"/>
         <div>
             <label>Name</label>
-            <input type="text" th:field="*{name}"/>
+            <input type="text"  th:field="*{name}"/>
+            <td
+                    th:errors="*{name}">Name Error
+            </td>
+        </div>
+
+
+        <div>
+            <label>artist</label>
+            <input type="text"  th:field="*{artist}"/>
+            <td
+                    th:errors="*{artist}">artist Error
+            </td>
         </div>
         <div>
-            <label>content</label>
-            <input type="text" th:field="*{artist}"/>
-        </div>
-        <div>
-            <label>note</label>
-            <input type="text" th:field="*{category}"/>
+            <label>category</label>
+            <input type="text"  th:field="*{category}"/>
+            <td
+                    th:errors="*{category}">category Error
+            </td>
         </div>
 
         <input type="submit" value="Save"/>

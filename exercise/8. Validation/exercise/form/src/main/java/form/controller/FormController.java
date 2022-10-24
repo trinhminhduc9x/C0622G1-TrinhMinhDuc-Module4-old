@@ -29,18 +29,19 @@ public class FormController {
     }
 
     @PostMapping("/")
-    public String checkValidation(@Validated @ModelAttribute("formDto") FormDto formDto
+    public String checkValidation(@Validated
+                                  @ModelAttribute("formDto") FormDto formDto
             , BindingResult bindingResult
             , RedirectAttributes redirectAttributes
             , Model model) {
         new FormDto().validate(formDto, bindingResult);
-        if (bindingResult.hasFieldErrors()){
+        if (bindingResult.hasFieldErrors()) {
             return "/form";
-        }else {
+        } else {
             Form form = new Form();
             BeanUtils.copyProperties(formDto, form);
             formService.save(form);
-            redirectAttributes.addFlashAttribute("message","Create form"+ form.getFirstName()+"ok");
+            redirectAttributes.addFlashAttribute("message", "Create form" + form.getFirstName() + "ok");
             return "/form";
         }
     }

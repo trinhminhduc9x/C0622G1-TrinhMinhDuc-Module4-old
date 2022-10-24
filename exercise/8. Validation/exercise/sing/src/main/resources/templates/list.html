@@ -26,27 +26,27 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="blog,loop : ${singPage}">
-        <td th:text="${blog.id}"></td>
-        <td th:text="${blog.name}"></td>
-        <td th:text="${blog.artist}"></td>
-        <td th:text="${blog.category}"></td>
+    <tr th:each="sing : ${singList}">
+        <td th:text="${sing.id}"></td>
+        <td th:text="${sing.name}"></td>
+        <td th:text="${sing.artist}"></td>
+        <td th:text="${sing.category}"></td>
 
         <!-- EDIT -->
-        <td><a th:href="@{/{id}/edit(id=${blog.id})}">
+        <td><a th:href="@{/{id}/edit(id=${sing.id})}">
             <buton class="btn btn-success">EDIT</buton>
         </a></td>
 
         <td>
             <!-- DELETE -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                    th:attr="onclick=|getIdToDelete('${blog.id}','${blog.name}')|">
+                    th:attr="onclick=|getIdToDelete('${sing.id}','${sing.name}')|">
                 DELETE
             </button>
         </td>
         <td>
             <!-- VIEW -->
-            <button th:attr="onclick=|infoToDetail('${blog.id}','${blog.name}','${blog.artist}','${blog.category}')|"
+            <button th:attr="onclick=|infoToDetail('${sing.id}','${sing.name}','${sing.artist}','${sing.category}')|"
                     class="btn btn-warning"
                     type="button" data-bs-toggle="modal" data-bs-target="#detailModal">
                 VIEW
@@ -56,7 +56,7 @@
         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
-                <form action="#" th:action="@{/{id}/delete(id=${blog.id})}">
+                <form action="#" th:action="@{/{id}/delete(id=${sing.id})}">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h2 class="modal-title text-danger" id="exampleModalLabel">Blog</h2>

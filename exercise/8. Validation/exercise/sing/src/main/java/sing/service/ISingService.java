@@ -4,14 +4,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import sing.model.Sing;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ISingService extends IGeneralService<Sing> {
-    @Override
-    Iterable<Sing> findAll();
+
+
+    Sing findById(Integer id);
 
     @Override
-    Optional<Sing> findById(Integer id);
+    List<Sing> findAll();
 
     @Override
     void update(Sing sing);
@@ -22,5 +24,5 @@ public interface ISingService extends IGeneralService<Sing> {
     @Override
     void remove(Integer id);
 
-    Page<Sing> findAllByName(Pageable pageable, String name);
+
 }

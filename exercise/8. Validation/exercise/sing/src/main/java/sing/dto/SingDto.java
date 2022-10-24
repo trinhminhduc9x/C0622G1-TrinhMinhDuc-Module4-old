@@ -1,24 +1,33 @@
 package sing.dto;
 
-import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-@Component
+
 public class SingDto implements Validator {
 
     private int id;
 
+    @NotBlank
+    @Pattern(regexp = "^(\\w)+(\\s\\w*)*$", message = "Please enter name")
     @Size(min = 1, max = 800)
+    @Column(name = "name")
     private  String name ;
-
+    @NotBlank
+    @Pattern(regexp = "^(\\w)+(\\s\\w*)*$", message = "Please enter artist")
     @Size(min = 1, max = 300)
+    @Column(name = "artist")
     private  String artist  ;
-
+    @NotBlank
     @Size(min = 1, max = 1000)
+    @Pattern(regexp = "^[(\\w)* ,]+$", message = "Please enter kind of music")
+    @Column(name = "category")
     private  String category ;
 
     public int getId() {
@@ -62,4 +71,5 @@ public class SingDto implements Validator {
     public void validate(Object target, Errors errors) {
 
     }
+
 }

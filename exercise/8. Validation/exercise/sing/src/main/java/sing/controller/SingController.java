@@ -1,9 +1,6 @@
 package sing.controller;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
+
 import org.springframework.web.bind.annotation.*;
 import sing.dto.SingDto;
 import sing.model.Sing;
@@ -16,8 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
+
 
 @Controller
 @RequestMapping(" ")
@@ -29,44 +27,56 @@ public class SingController {
 
     @GetMapping(" ")
     public String showList(Model model) {
-        model.addAttribute("singPage", singService.findAll());
+        List<Sing> singList = singService.findAll();
+        model.addAttribute("singList", singList);
         return "/list";
     }
-
 
     @GetMapping("/create")
     public String showFormList(Model model) {
         model.addAttribute("SingDto", new SingDto());
-        return "/create";
+        return "create";
     }
 
     @PostMapping("/save")
-    public String checkValidation(@Validated @ModelAttribute("singDto") SingDto singDto
-            , BindingResult bindingResult
-            , RedirectAttributes redirectAttributes
-            , Model model) {
+    public String create(@Valid
+                         @ModelAttribute("SingDto") SingDto singDto,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes,
+                         Model model) {
         new SingDto().validate(singDto, bindingResult);
-        if (bindingResult.hasFieldErrors()){
-            return "redirect:/";
-        }else {
-            Sing sing = new Sing();
-            BeanUtils.copyProperties(singDto, sing);
-            singService.save(sing);
-            redirectAttributes.addFlashAttribute("message","Create form"+ sing.getName()+"ok");
-            return "redirect:/";
+        if (bindingResult.hasErrors()) {
+            return "create";
         }
+        Sing sing = new Sing();
+        BeanUtils.copyProperties(singDto, sing);
+        model.addAttribute("SingDto", singDto);
+        singService.save(sing);
+        redirectAttributes.addFlashAttribute("msg", "Register successfully!");
+        return "redirect:/";
     }
-
     @GetMapping("/{id}/edit")
-    public String edit(@PathVariable int id, Model model) {
+    public String showUpdate(@PathVariable Integer id, Model model) {
         model.addAttribute("sing", singService.findById(id));
-        return "/edit";
+        return "edit";
     }
 
     @PostMapping("/update")
-    public String update(Sing sing) {
-        singService.update(sing);
-        return "redirect:/";
+    public String update(@Valid
+                         @ModelAttribute("sing") SingDto singDto,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes,
+                         Model model) {
+        new SingDto().validate(singDto, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "edit";
+        }
+        Sing sing = new Sing();
+        BeanUtils.copyProperties(singDto, sing);
+        model.addAttribute("SingDto", singDto);
+        singService.save(sing);
+        redirectAttributes.addFlashAttribute("msg","Register successfully!");
+        return "list";
     }
 
     @GetMapping("/{id}/delete")
@@ -75,7 +85,4 @@ public class SingController {
         redirect.addFlashAttribute("success", "Delete new success");
         return "redirect:/";
     }
-
- `
-
 }

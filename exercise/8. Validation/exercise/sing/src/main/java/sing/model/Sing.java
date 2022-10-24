@@ -56,4 +56,5 @@ public class Sing {
     public void setCategory(String category) {
         this.category = category;
     }
+
 }

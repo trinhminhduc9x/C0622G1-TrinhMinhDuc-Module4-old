@@ -8,6 +8,7 @@ import sing.service.ISingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -17,14 +18,15 @@ public class SingServiceImpl implements ISingService {
     @Autowired
     private ISingRepository repository;
 
+
     @Override
-    public Iterable<Sing> findAll() {
-        return repository.findAll();
+    public Sing findById(Integer id) {
+        return repository.findById(id).get();
     }
 
     @Override
-    public Optional<Sing> findById(Integer id) {
-        return Optional.empty();
+    public List<Sing> findAll() {
+        return repository.findAll();
     }
 
     @Override
@@ -39,11 +41,6 @@ public class SingServiceImpl implements ISingService {
 
     @Override
     public void remove(Integer id) {
-
-    }
-
-    @Override
-    public Page<Sing> findAllByName(Pageable pageable, String name) {
-        return this.repository.findAllByName(pageable, "%" + name + "%");
+        repository.deleteById(id);
     }
 }
