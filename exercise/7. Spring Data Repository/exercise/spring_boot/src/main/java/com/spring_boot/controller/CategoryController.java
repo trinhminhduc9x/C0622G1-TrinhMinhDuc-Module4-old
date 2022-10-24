@@ -2,8 +2,8 @@ package com.spring_boot.controller;
 
 import com.spring_boot.model.Blog;
 import com.spring_boot.model.Category;
-import com.spring_boot.service.ICategoryService;
 import com.spring_boot.service.IBlogService;
+import com.spring_boot.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,13 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 import java.util.Optional;
 
-
 @Controller
-@RequestMapping("/blog")
-public class BlogController {
+@RequestMapping("/category")
+public class CategoryController {
 
-    @Autowired
-    private IBlogService blogService;
+
 
     @Autowired
     private ICategoryService categoryService;
@@ -32,20 +30,17 @@ public class BlogController {
 
 
     @GetMapping("/list")
-    public String goPage(Model model, @PageableDefault(6) Pageable pageable,
+    public String goPage(Model model, @PageableDefault(3) Pageable pageable,
                          @RequestParam Optional<String> name,
                          @RequestParam(required = false, defaultValue = "") String note) {
         for (Sort.Order order: pageable.getSort()) {
             model.addAttribute("sortValue", order.getProperty());
         }
         String keyName = name.orElse("");
-        Page<Blog> blogPage = blogService.findAll(pageable,keyName, note);
-        List<Category> categoryList = categoryService.findAll();
-        model.addAttribute("categoryList",categoryList);
-        model.addAttribute("blogPage", blogPage);
+        Page<Category> categoryPage = categoryService.findAll(pageable,keyName);
+        model.addAttribute("categoryPage", categoryPage);
         model.addAttribute("name", keyName);
-        model.addAttribute("note", note);
-        return "blog/index";
+        return "category/index";
     }
 
     @GetMapping("/create")
@@ -54,49 +49,43 @@ public class BlogController {
         List<Category> categoryList = categoryService.findAll();
 
 
-        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("category", new Category());
 
 
-        model.addAttribute("blog", new Blog());
-
-
-        return "/blog/create";
+        return "/category/create";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Blog blog) {
+    public String save(@ModelAttribute Category category) {
 
-        blogService.save(blog);
+        categoryService.save(category);
 
-        return "redirect:/blog/list";
+        return "redirect:/category/list";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable int id, Model model) {
-        model.addAttribute("blog", blogService.findById(id));
-        model.addAttribute("categoryList", categoryService.findAll());
-        return "/blog/edit";
+        model.addAttribute("category", categoryService.findById(id));
+        return "/category/edit";
     }
 
     @PostMapping("/update")
-    public String update(Blog blog) {
-        blogService.update(blog);
-        return "redirect:/blog/list";
+    public String update(Category category) {
+        categoryService.update(category);
+        return "redirect:/category/list";
     }
 
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable Integer id, RedirectAttributes redirect) {
-        blogService.remove(id);
+        categoryService.remove(id);
         redirect.addFlashAttribute("success", "Delete new success");
-        return "redirect:/blog/list";
+        return "redirect:/category/list";
     }
-
 
     @GetMapping("/search")
     public String search(@RequestParam int id, Model model) {
-        model.addAttribute("products", blogService.findById(id));
-        return "/blog/list";
+        model.addAttribute("products", categoryService.findById(id));
+        return "/category/list";
     }
-
 
 }

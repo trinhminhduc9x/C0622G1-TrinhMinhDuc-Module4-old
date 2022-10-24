@@ -1,9 +1,12 @@
 package com.spring_boot.service.impl;
 
+import com.spring_boot.model.Blog;
 import com.spring_boot.model.Category;
 import com.spring_boot.repository.ICategoryRepository;
 import com.spring_boot.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,11 +34,16 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public void update(Category category) {
-
+        repository.save(category);
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(Integer id) {
+        repository.deleteById(id);
+    }
 
+    @Override
+    public Page<Category> findAll(Pageable pageable, String name) {
+        return this.repository.findAllByName(pageable, "%" + name + "%");
     }
 }

@@ -2,6 +2,8 @@ package com.spring_boot.repository;
 
 import com.spring_boot.model.Category;
 import com.spring_boot.model.Blog;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,4 +20,7 @@ public interface ICategoryRepository extends JpaRepository<Category, Integer> {
 
     @Query(value = "select * from Student where name =:keyword", nativeQuery = true)
     List<Blog> searchByName(@Param("keyword") String keyword);
+
+    @Query(value = " select * from category where name like :name ", nativeQuery = true)
+    Page<Category> findAllByName(Pageable pageable, @Param("name") String name);
 }
