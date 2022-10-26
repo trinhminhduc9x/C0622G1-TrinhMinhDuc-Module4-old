@@ -30,7 +30,8 @@ public class CategoryController {
 
 
     @GetMapping("/list")
-    public String goPage(Model model, @PageableDefault(3) Pageable pageable,
+    public String goPage(Model model,
+                         @PageableDefault(3) Pageable pageable,
                          @RequestParam Optional<String> name,
                          @RequestParam(required = false, defaultValue = "") String note) {
         for (Sort.Order order: pageable.getSort()) {
@@ -87,5 +88,6 @@ public class CategoryController {
         model.addAttribute("products", categoryService.findById(id));
         return "/category/index";
     }
+
 
 }

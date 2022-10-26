@@ -32,9 +32,10 @@ public class BlogController {
 
 
     @GetMapping("/list")
-    public String goPage(Model model, @PageableDefault(6) Pageable pageable,
+    public String goPage(Model model,
+                         @PageableDefault(6) Pageable pageable,
                          @RequestParam Optional<String> name,
-                         @RequestParam(required = false, defaultValue = "") String note) {
+                         @RequestParam(required = false, defaultValue = "") String note) throws Exception {
         for (Sort.Order order: pageable.getSort()) {
             model.addAttribute("sortValue", order.getProperty());
         }
@@ -45,7 +46,15 @@ public class BlogController {
         model.addAttribute("blogPage", blogPage);
         model.addAttribute("name", keyName);
         model.addAttribute("note", note);
-        return "blog/index";
+
+
+        if (blogPage.isEmpty()) {
+            throw new Exception();
+        }else {
+            return "/blog/index";
+        }
+
+
     }
 
     @GetMapping("/create")
@@ -91,7 +100,6 @@ public class BlogController {
     }
 
 
-
     @GetMapping("/search")
     public String search(@RequestParam int id, Model model) {
         model.addAttribute("products", blogService.findById(id));
@@ -99,5 +107,10 @@ public class BlogController {
     }
 
 
+
+    @ExceptionHandler(value = Exception.class)
+    public String error() {
+        return "/error";
+    }
 
 }
