@@ -66,8 +66,11 @@ public class BookController {
     @PostMapping("/save")
     public String save(@ModelAttribute Book book) {
 
+        book.getOrdersssAndPaysss().setPayasc(book.getAmount());
+
 
         bookService.save(book);
+
 
 
         return "redirect:/book/list";
@@ -82,18 +85,21 @@ public class BookController {
         OrderacsAndPayacs orderacsAndPayacs = oandPservice.findById(id);
 
 
-        Integer oder =  book.getOrdersssAndPaysss().getOrderasc() + 1;
+        if ((orderacsAndPayacs.getPayasc() + orderacsAndPayacs.getOrderasc() == book.getAmount()) && orderacsAndPayacs.getOrderasc() < book.getAmount()) {
+            Integer oder = book.getOrdersssAndPaysss().getOrderasc() + 1;
+            Integer pay = book.getOrdersssAndPaysss().getPayasc() - 1;
+            orderacsAndPayacs.setOrderasc(oder);
+            orderacsAndPayacs.setPayasc(pay);
+            oandPservice.save(orderacsAndPayacs);
 
-        orderacsAndPayacs.setOrderasc(oder);
+        } else if (orderacsAndPayacs.getPayasc() + orderacsAndPayacs.getOrderasc() < book.getAmount()) {
+            Integer oder = book.getOrdersssAndPaysss().getOrderasc() + 1;
+            orderacsAndPayacs.setOrderasc(oder);
+            oandPservice.save(orderacsAndPayacs);
 
-
-        if ((orderacsAndPayacs.getPayasc() + orderacsAndPayacs.getOrderasc()) > book.getAmount()){
+        } else {
             throw new Exception();
         }
-
-
-
-        oandPservice.save(orderacsAndPayacs);
 
 
         return "redirect:/book/list";
@@ -121,18 +127,16 @@ public class BookController {
             OrderacsAndPayacs o = oandPservice.findById(id);
 
 
-            Integer pay =  book.getOrdersssAndPaysss().getPayasc() +1;
+            Integer pay = book.getOrdersssAndPaysss().getPayasc() + 1;
 
             o.setPayasc(pay);
 
-            Integer oder =  book.getOrdersssAndPaysss().getOrderasc() -1;
-
+            Integer oder = book.getOrdersssAndPaysss().getOrderasc() - 1;
 
 
             o.setOrderasc(oder);
 
             oandPservice.save(o);
-
 
 
         } else {
