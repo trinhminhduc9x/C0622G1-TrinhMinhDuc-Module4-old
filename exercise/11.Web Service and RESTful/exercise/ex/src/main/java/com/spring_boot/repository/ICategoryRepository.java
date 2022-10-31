@@ -11,16 +11,18 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ICategoryRepository extends JpaRepository<Category, Integer> {
-    List<Blog> findByName(String keyword);
-    List<Blog> findByNameContaining(String keyword);
 
-    /*Tìm theo tên tương đối và ID lớn hơn 2*/
-    List<Blog> findAllBy();
-    List<Blog> findByNameContainingAndIdGreaterThan(String keyword, int id);
-
-    @Query(value = "select * from Student where name =:keyword", nativeQuery = true)
-    List<Blog> searchByName(@Param("keyword") String keyword);
 
     @Query(value = " select * from category where name like :name ", nativeQuery = true)
     Page<Category> findAllByName(Pageable pageable, @Param("name") String name);
+
+    @Query(value = " select * from blog where category_id like :id ", nativeQuery = true)
+    List<Blog> findListById(  @Param("id") Integer id);
+
+
+
+
+
+
+
 }

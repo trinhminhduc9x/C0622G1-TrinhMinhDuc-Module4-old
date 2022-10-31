@@ -20,4 +20,7 @@ public interface IBlogService {
     void remove(Integer id);
 
     Page<Blog> findAll(Pageable pageable, String name, String note);
+
+
+    List<Blog> findListById(Integer id);
 }

@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -22,6 +23,10 @@ public class CategoryRestController {
 
     @Autowired
     private ICategoryService categoryService;
+
+
+    @Autowired
+    private IBlogService iBlogService;
 
     @GetMapping(" ")
     public ResponseEntity<Page<Category>> goPage(@PageableDefault(10) Pageable pageable,
@@ -36,12 +41,12 @@ public class CategoryRestController {
     }
 
     @GetMapping("/view/{id}")
-    public ResponseEntity<Category> goDetail(@PathVariable Integer id) {
-        Category category = categoryService.findById(id);
-        if (category == null) {
+    public ResponseEntity<List<Blog>> viewList(@PathVariable Integer id) {
+        List<Blog> blogList = iBlogService.findListById(id);
+        if (blogList == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(category, HttpStatus.OK);
+        return new ResponseEntity<>(blogList, HttpStatus.OK);
     }
 
     @PostMapping

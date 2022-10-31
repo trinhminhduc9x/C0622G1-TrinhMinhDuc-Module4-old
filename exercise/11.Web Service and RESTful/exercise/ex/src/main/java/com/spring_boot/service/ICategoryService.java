@@ -20,4 +20,7 @@ public interface ICategoryService {
     void remove(Integer id);
 
     Page<Category> findAll(Pageable pageable, String name);
+
+
+    List<Blog> findListById(Integer id);
 }

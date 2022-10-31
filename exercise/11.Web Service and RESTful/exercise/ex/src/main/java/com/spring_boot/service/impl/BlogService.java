@@ -50,4 +50,9 @@ public class BlogService implements IBlogService {
         return this.repository.findAllByNameAndAuthor(pageable, "%" + name + "%", "%" + note + "%");
     }
 
+    @Override
+    public List<Blog> findListById(Integer id) {
+        return repository.findListById(id);
+    }
+
 }

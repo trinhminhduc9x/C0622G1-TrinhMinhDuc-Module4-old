@@ -46,4 +46,11 @@ public class CategoryService implements ICategoryService {
     public Page<Category> findAll(Pageable pageable, String name) {
         return this.repository.findAllByName(pageable, "%" + name + "%");
     }
+
+    @Override
+    public List<Blog> findListById(Integer id) {
+        return repository.findListById(id);
+    }
+
+
 }
