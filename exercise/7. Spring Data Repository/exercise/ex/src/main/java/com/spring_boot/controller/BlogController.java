@@ -33,7 +33,7 @@ public class BlogController {
 
     @GetMapping("/list")
     public String goPage(Model model,
-                         @PageableDefault(6) Pageable pageable,
+                         @PageableDefault(3) Pageable pageable,
                          @RequestParam Optional<String> name,
                          @RequestParam(required = false, defaultValue = "") String note) throws Exception {
         for (Sort.Order order: pageable.getSort()) {
