@@ -33,7 +33,7 @@ public class BlogController {
 // em phan trang va gop vao lish roi a
     @GetMapping("/list")
     public String goPage(Model model,
-                         @PageableDefault(3) Pageable pageable,
+                         @PageableDefault(10) Pageable pageable,
                          @RequestParam Optional<String> name,
                          @RequestParam(required = false, defaultValue = "") String note) throws Exception {
         for (Sort.Order order: pageable.getSort()) {
@@ -46,8 +46,6 @@ public class BlogController {
         model.addAttribute("blogPage", blogPage);
         model.addAttribute("name", keyName);
         model.addAttribute("note", note);
-
-
         if (blogPage.isEmpty()) {
             throw new Exception();
         }else {
