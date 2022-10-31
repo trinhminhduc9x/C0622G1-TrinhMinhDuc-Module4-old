@@ -50,7 +50,6 @@ public class SingController {
         }
         Sing sing = new Sing();
         BeanUtils.copyProperties(singDto, sing);
-        model.addAttribute("SingDto", singDto);
         singService.save(sing);
         redirectAttributes.addFlashAttribute("msg", "Register successfully!");
         return "redirect:/";
