@@ -1,27 +1,25 @@
 package com.spring_boot.service;
 
 import com.spring_boot.model.Blog;
+import com.spring_boot.model.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 
 import java.util.List;
 import java.util.Optional;
 
-public interface IBlogService {
-    List<Blog> findAll();
+public interface ICategoryService {
+    List<Category> findAll();
 
-    void save(Blog blog);
+    void save(Category category);
 
-    Blog findById(Integer id);
+   Category findById(Integer id);
 
-    void update(Blog blog);
+    void update(Category category);
 
     void remove(Integer id);
 
-    Page<Blog> findAll(Pageable pageable, String name, String note);
-
-    Page<Blog> findAllNamw(Pageable pageable, String name);
+    Page<Category> findAll(Pageable pageable, String name);
 
 
     List<Blog> findListById(Integer id);
