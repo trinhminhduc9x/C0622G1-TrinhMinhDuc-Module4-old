@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 
 @Configuration
@@ -19,7 +21,7 @@ public class WebsecurityConfig extends WebSecurityConfigurerAdapter {
     private MyUserDetailServiceImpl userDetailService;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -30,11 +32,19 @@ public class WebsecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       http.csrf().disable()
-               .formLogin()
-               .defaultSuccessUrl("/blog")
-               .permitAll().and()
-               .authorizeRequests()
-               .anyRequest().authenticated();
+        http.csrf().disable()
+                    .formLogin()
+                    .defaultSuccessUrl("/blog").permitAll()
+                .and()
+                    .authorizeRequests()
+                    .antMatchers("/home").permitAll()
+                    .anyRequest().authenticated();
     }
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository(){
+
+        InMemoryTokenRepositoryImpl inMemoryTokenRepository = new InMemoryTokenRepositoryImpl();
+        return inMemoryTokenRepository;
+    }
+
 }

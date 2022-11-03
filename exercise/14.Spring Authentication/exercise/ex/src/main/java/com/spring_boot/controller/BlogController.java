@@ -92,7 +92,7 @@ public class BlogController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam(name = "id") Integer id) {
+    public String delete(@PathVariable(name = "id") Integer id) {
         blogService.remove(id);
         return "redirect:/blog/list";
     }
