@@ -34,15 +34,15 @@ public class WebsecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                     .formLogin()
-                    .defaultSuccessUrl("/blog").permitAll()
+                    .defaultSuccessUrl("/home").permitAll()
                 .and()
                     .authorizeRequests()
                     .antMatchers("/home").permitAll()
+                .antMatchers("/blog/delete","/blog/{id}/edit","/category/delete","/category/{id}/edit").hasAnyRole("ADMIN")
                     .anyRequest().authenticated();
     }
     @Bean
     public PersistentTokenRepository persistentTokenRepository(){
-
         InMemoryTokenRepositoryImpl inMemoryTokenRepository = new InMemoryTokenRepositoryImpl();
         return inMemoryTokenRepository;
     }

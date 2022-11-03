@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: head">
 </head>
 <body>
@@ -9,7 +9,7 @@
 <h3 style="text-align: center">BLOG</h3>
 <p>
     <a th:href="@{/blog/create}">
-        Add new blog
+        <input class="m-3 btn btn-danger" type="submit" value=" Add new blog">
     </a>
 </p>
 <form action="/blog/list" method="get">
@@ -34,9 +34,16 @@
         <th>content</th>
         <th>note</th>
         <th>Category</th>
-        <th>Edit</th>
-        <th>Delete</th>
         <th>View</th>
+
+        <div sec:authorize="isAuthenticated()">
+            <div sec:authorize="hasRole('ADMIN')">
+                <!--    quyen cua admin-->
+                <th>Edit</th>
+                <th>Delete</th>
+                <!--tai nguyen cua nguoi dung-->
+            </div>
+        </div>
     </tr>
     </thead>
     <tbody>
@@ -48,18 +55,30 @@
         <td th:text="${blog.note}"></td>
         <td th:text="${blog.category.name}"></td>
 
-        <!-- EDIT -->
-        <td><a th:href="@{/blog/{id}/edit(id=${blog.id})}">
-            <buton class="btn btn-success">EDIT</buton>
-        </a></td>
 
-        <td>
-            <!-- DELETE -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                    th:attr="onclick=|getIdToDelete('${blog.id}','${blog.name}')|">
-                DELETE
-            </button>
-        </td>
+        <!--        test-->
+        <div sec:authorize="isAuthenticated()">
+
+            <!--    quyen cua admin-->
+
+            <div sec:authorize="hasRole('ADMIN')">
+                <!-- EDIT -->
+                <td><a th:href="@{/blog/{id}/edit(id=${blog.id})}">
+                    <buton class="btn btn-success">EDIT</buton>
+                </a></td>
+
+                <td>
+                    <!-- DELETE -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            th:attr="onclick=|getIdToDelete('${blog.id}','${blog.name}')|">
+                        DELETE
+                    </button>
+                </td>
+            </div>
+            <!--tai nguyen cua nguoi dung-->
+
+        </div>
+
         <td>
             <!-- VIEW -->
             <button th:attr="onclick=|infoToDetail('${blog.id}','${blog.name}','${blog.content}','${blog.note}')|"
