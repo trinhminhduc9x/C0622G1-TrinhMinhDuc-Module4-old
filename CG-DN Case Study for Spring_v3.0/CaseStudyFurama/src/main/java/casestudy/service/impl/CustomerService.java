@@ -51,7 +51,22 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
+    public Page<Customer> findPageNameEmailCustomerType(Pageable pageable, String name, String email, String CustomerType) {
+        return this.repository.findAllByNameAndEmailAndCustomerType(pageable,"%"+ name + "%","%"+ email + "%","%"+ CustomerType + "%");
+    }
+
+    @Override
+    public Page<Customer> findPageNameEmail(Pageable pageable, String name, String email) {
+        return this.repository.findAllByNameAndEmail(pageable,"%"+ name + "%","%"+ email + "%");
+    }
+
+    @Override
     public Page<Customer> findPageNameAll(Pageable pageable, String name) {
         return this.repository.findAllByName(pageable,"%"+ name + "%");
+    }
+
+    @Override
+    public Page<Customer> findPageNameEmailType(Pageable pageable, String name, String email, String CustomerTypeID) {
+        return this.repository.findAllByNameAndEmailAndCustomerTypeID(pageable,"%"+ name + "%","%"+ email + "%","%"+ CustomerTypeID + "%");
     }
 }

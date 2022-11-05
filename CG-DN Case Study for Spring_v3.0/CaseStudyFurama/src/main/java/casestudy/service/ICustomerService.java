@@ -23,9 +23,16 @@ public interface ICustomerService extends IGeneralService<Customer> {
     void update(Customer customer);
 
     @Override
+    Page<Customer> findPageNameAll(Pageable pageable, String name);
+
+    @Override
     void remove(Integer id);
     void removeNew(Integer id);
 
-    @Override
-    Page<Customer> findPageNameAll(Pageable pageable, String name);
+    Page<Customer> findPageNameEmailCustomerType(Pageable pageable, String name,String email,String CustomerType);
+
+    Page<Customer> findPageNameEmail(Pageable pageable, String name,String email);
+
+    Page<Customer> findPageNameEmailType(Pageable pageable, String name,String email,String CustomerTypeID);
+
 }

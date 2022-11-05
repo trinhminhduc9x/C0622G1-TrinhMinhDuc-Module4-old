@@ -22,6 +22,24 @@
                name="name" aria-label="Search" th:value="${name}">
         <button class="btn btn-success" type="submit">Search</button>
     </tr>
+    <tr>
+        <input class="form-control me-2 w-25 " type="text" placeholder="email"
+               name="email" aria-label="Search" th:value="${email}">
+        <button class="btn btn-success" type="submit">Search</button>
+    </tr>
+
+    <tr>
+        <form>
+                <label>CustomerType:</label>
+                <select name="CustomerTypeID">
+                    <option th:each="p : ${customerTypeList}"
+                            th:value="${p.id}"
+                            th:text="${p.name}"></option>
+                </select>
+                <button class="btn btn-success" type="submit">Search</button>
+        </form>
+    </tr>
+
 </form>
 <a th:href="@{/customer/list(sort='name', name=${name})}" class="btn btn-success" type="submit">Sort By
     Name</a>
@@ -63,7 +81,7 @@
 
                 <!-- EDIT -->
                 <td><a th:href="@{/customer/{id}/edit(id=${customer.id})}">
-                    <buton class="btn btn-success">EDIT</buton>
+                    <buton class="btn btn-success">+</buton>
                 </a></td>
 
                 <td>
