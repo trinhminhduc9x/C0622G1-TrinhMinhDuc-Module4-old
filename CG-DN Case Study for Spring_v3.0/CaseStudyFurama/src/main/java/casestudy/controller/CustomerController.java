@@ -43,7 +43,6 @@ public class CustomerController {
         model.addAttribute("customerPage", customerPage);
         model.addAttribute("name", keyName);
         model.addAttribute("email", email);
-//        model.addAttribute("CustomerTypeID", customerTypeList);
         if (customerPage.isEmpty()) {
             throw new Exception();
         } else {
