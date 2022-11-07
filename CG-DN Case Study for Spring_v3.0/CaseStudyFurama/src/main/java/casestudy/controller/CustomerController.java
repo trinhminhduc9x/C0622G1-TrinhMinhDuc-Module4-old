@@ -2,8 +2,8 @@ package casestudy.controller;
 
 import casestudy.model.customer.Customer;
 import casestudy.model.customer.CustomerType;
-import casestudy.service.ICustomerService;
-import casestudy.service.ICustomerTypeService;
+import casestudy.service.customer.ICustomerService;
+import casestudy.service.customer.ICustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
