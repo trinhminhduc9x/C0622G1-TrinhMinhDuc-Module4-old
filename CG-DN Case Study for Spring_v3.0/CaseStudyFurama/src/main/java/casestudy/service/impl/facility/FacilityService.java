@@ -37,14 +37,15 @@ public class FacilityService implements IFacilityService {
         return repository.findById(id).orElse(new Facility());
     }
 
+
     @Override
     public void update(Facility facility) {
-repository.save(facility);
+        repository.save(facility);
     }
 
     @Override
     public void remove(Integer id) {
-
+        repository.deleteById(id);
     }
 
     @Override
@@ -54,6 +55,6 @@ repository.save(facility);
 
     @Override
     public Page<Facility> findPageNameFacilityType(Pageable pageable, String name, String FacilityTypeID) {
-        return this.repository.findAllByNameAndFacilityType(pageable,"%"+ name + "%","%"+ FacilityTypeID + "%");
+        return this.repository.findAllByNameAndFacilityType(pageable, "%" + name + "%", "%" + FacilityTypeID + "%");
     }
 }

@@ -8,7 +8,7 @@
 
 <p>
     <a th:href="@{/facility/create}">
-        <input class="m-3 btn btn-danger" type="submit" value=" Add new Customer">
+        <input class="m-3 btn btn-danger" type="submit" value=" Add ">
     </a>
 </p>
 
@@ -21,7 +21,8 @@
     <tr>
         <form>
                 <label>CustomerType:</label>
-                <select name="CustomerTypeID">
+                <select name="FacilityTypeID">
+                    <option value=""  selected>Choose Something</option>
                     <option th:each="p : ${facilityTypeList}"
                             th:value="${p.id}"
                             th:text="${p.name}"></option>
@@ -59,7 +60,6 @@
     </thead>
     <tbody>
     <tr th:each="facility,loop : ${facilityPage}">
-        <!--        <td th:text="${loop.count + blogPage.size * blogPage.number}"></td>-->
         <td th:text="${facility.id}"></td>
         <td th:text="${facility.name}"></td>
         <td th:text="${facility.area}"></td>
@@ -89,7 +89,7 @@
 
                 <td>
                     <!-- VIEW -->
-                    <button th:attr="onclick=|infoToDetail('${facility.id}','${facility.name}')|"
+                    <button th:attr="onclick=|infoToDetail('${facility.id}','${facility.name}','${facility.descriptionOtherConvenience}','${facility.facilityType.name}')|"
                             class="btn btn-warning"
                             type="button" data-bs-toggle="modal" data-bs-target="#detailModal">
                         VIEW
@@ -144,6 +144,10 @@
                         <input type="text" readonly name="id" id="detailId" class="form-control"><br>
                         <b>Name  :</b>
                         <input type="text" readonly name="name" id="detailName" class="form-control"><br>
+                        <b>DescriptionOtherConvenience  :</b>
+                        <input type="text" readonly name="name" id="detailDescriptionOtherConvenience" class="form-control"><br>
+                        <b>FacilityType  :</b>
+                        <input type="text" readonly name="name" id="detailFacilityType" class="form-control"><br>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -184,15 +188,16 @@
 <script>
     // <%--    thêm value cho thẻ delete--%>
     function getIdToDelete(id, name) {
-
         document.getElementById("idDelete").value = id;
         document.getElementById("nameDelete").value = name;
     }
 
     // <%--    thêm value cho thẻ view--%>
-    function infoToDetail(id, name) {
+    function infoToDetail(id, name,DescriptionOtherConvenience,FacilityType) {
         document.getElementById("detailId").value = id;
         document.getElementById("detailName").value = name;
+        document.getElementById("detailDescriptionOtherConvenience").value = DescriptionOtherConvenience;
+        document.getElementById("detailFacilityType").value = FacilityType;
     }
 </script>
 

@@ -11,7 +11,7 @@
 
 <p>
     <a th:href="@{/customer/create}">
-        <input class="m-3 btn btn-danger" type="submit" value=" Add new Customer">
+        <input class="m-3 btn btn-danger" type="submit" value=" Add">
     </a>
 </p>
 
@@ -32,6 +32,7 @@
         <form>
                 <label>CustomerType:</label>
                 <select name="CustomerTypeID">
+                    <option value=""  selected>Choose Something</option>
                     <option th:each="p : ${customerTypeList}"
                             th:value="${p.id}"
                             th:text="${p.name}"></option>
@@ -43,7 +44,7 @@
 </form>
 <a th:href="@{/customer/list(sort='name', name=${name})}" class="btn btn-success" type="submit">Sort By
     Name</a>
-<table id="table">
+<table id="tableMinhDuc">
     <thead>
     <tr>
         <!--        <th>No.</th>-->
@@ -63,7 +64,6 @@
     </thead>
     <tbody>
     <tr th:each="customer,loop : ${customerPage}">
-        <!--        <td th:text="${loop.count + blogPage.size * blogPage.number}"></td>-->
         <td th:text="${customer.id}"></td>
         <td th:text="${customer.name}"></td>
         <td th:text="${customer.dateOfBirth}"></td>

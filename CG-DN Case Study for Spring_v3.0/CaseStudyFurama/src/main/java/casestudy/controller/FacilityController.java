@@ -82,5 +82,31 @@ public class FacilityController {
 
         return "redirect:/facility/list";
     }
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable int id, Model model) {
+
+        model.addAttribute("facility", facilityService.findById(id));
+        model.addAttribute("facilityType", facilityTypeService.findListAll());
+        model.addAttribute("rentTypeL", iRentTypeService.findListAll());
+        return "/facility/edit";
+    }
+
+    @PostMapping("/update")
+    public String update(Facility facility) {
+        facilityService.update(facility);
+        return "redirect:/facility/list";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam(name = "id") Integer id) {
+        facilityService.remove(id);
+        return "redirect:/facility/list";
+    }
+
+
+    @ExceptionHandler(value = Exception.class)
+    public String error() {
+        return "/error";
+    }
 
 }

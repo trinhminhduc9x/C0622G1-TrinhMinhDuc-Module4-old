@@ -10,7 +10,7 @@
     </a>
 </p>
 <div id="form">
-    <form th:action="@{/facility/save}" th:object="${facility}"
+    <form th:action="@{/facility/update}" th:object="${facility}"
           method="POST" novalidate="novalidate">
         <input type="hidden" th:field="*{id}"/>
         <div>
@@ -52,7 +52,7 @@
         <div>
             <label>CustomerType:</label>
             <select th:field="*{facilityType}">
-                <option th:each="p : ${facilityTypeList}"
+                <option th:each="p : ${facilityType}"
                         th:value="${p.id}"
                         th:text="${p.name}"></option>
             </select>
@@ -60,7 +60,7 @@
         <div>
             <label>CustomerType:</label>
             <select th:field="*{rentType}">
-                <option th:each="p : ${rentType}"
+                <option th:each="p : ${rentTypeL}"
                         th:value="${p.id}"
                         th:text="${p.name}"></option>
             </select>
