@@ -39,8 +39,12 @@ public class CustomerController {
         Page<Customer> customerPage = customerService.findPageNameEmailType(pageable,keyName,email,CustomerTypeID);
 
         List<CustomerType> customerTypeList = customerTypeService.findListAll();
+
+
+
         model.addAttribute("customerTypeList", customerTypeList);
         model.addAttribute("customerPage", customerPage);
+        model.addAttribute("CustomerTypeID", CustomerTypeID);
         model.addAttribute("name", keyName);
         model.addAttribute("email", email);
         if (customerPage.isEmpty()) {
@@ -93,11 +97,7 @@ public class CustomerController {
         return "redirect:/customer/list";
     }
 
-    @GetMapping("/deleteNew")
-    public String deleteNew(@RequestParam(name = "id") Integer id) {
-        customerService.remove(id);
-        return "redirect:/customer/list";
-    }
+
 
     @ExceptionHandler(value = Exception.class)
     public String error() {
