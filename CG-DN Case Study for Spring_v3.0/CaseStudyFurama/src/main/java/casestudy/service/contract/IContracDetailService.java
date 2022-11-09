@@ -1,5 +1,6 @@
 package casestudy.service.contract;
 
+import casestudy.dto.DucDepTrai;
 import casestudy.model.contract.ContractDetail;
 import casestudy.service.IGeneralService;
 import org.springframework.data.domain.Page;
@@ -28,4 +29,9 @@ public interface IContracDetailService extends IGeneralService<ContractDetail> {
 
     @Override
     Page<ContractDetail> findPageNameAll(Pageable pageable, String name);
+
+    List<ContractDetail> findListcontractId( Integer contractId);
+
+    List<DucDepTrai> findListByCustomerId(Integer contractId);
+
 }

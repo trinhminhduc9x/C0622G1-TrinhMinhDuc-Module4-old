@@ -38,7 +38,7 @@
                     let search = $("#inputSearch").val();
                     console.log(search),
                         $.ajax({
-                            url: "http://localhost:8080/blogRest?" + "&search=" + search,
+                            url: "http://localhost:8080/contractdetaildto?" + search + "/viewContractDetail" ,
                             type: "GET",
                             dataType: "json",
                             success: function (blogs) {
@@ -75,7 +75,7 @@
 
             console.log("hello")
             $.ajax({
-                url: "http://localhost:8080/blogRest?",
+                url: "http://localhost:8080/contractdetaildto?" + search + "/viewContractDetail" ,
                 type: "GET",
                 dataType: "json",
                 success: function (blogs) {

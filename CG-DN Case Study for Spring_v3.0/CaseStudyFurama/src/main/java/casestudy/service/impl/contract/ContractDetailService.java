@@ -1,5 +1,6 @@
 package casestudy.service.impl.contract;
 
+import casestudy.dto.DucDepTrai;
 import casestudy.model.contract.ContractDetail;
 import casestudy.repository.contract.IContractDetailRepository;
 import casestudy.repository.contract.IContractRepository;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -52,4 +54,16 @@ public class ContractDetailService implements IContracDetailService {
     public Page<ContractDetail> findPageNameAll(Pageable pageable, String name) {
         return null;
     }
+
+    @Override
+    public List<ContractDetail> findListcontractId(Integer contractId) {
+        return repository.findListById(contractId);
+    }
+
+    @Override
+    public List<DucDepTrai> findListByCustomerId(Integer contractId) {
+        return repository.findListByCustomerId(contractId);
+    }
+
+
 }

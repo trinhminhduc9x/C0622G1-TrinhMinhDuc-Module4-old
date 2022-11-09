@@ -42,6 +42,7 @@
         <div>
             <label>CustomerType:</label>
             <select th:field="*{rentType}">
+                <option th:value="${''}">Chose Type..</option>
                 <option th:each="p : ${rentTypeList}"
                         th:value="${p.id}"
                         th:text="${p.name}"></option>

@@ -15,6 +15,7 @@ import casestudy.service.employee.IEmployeeService;
 import casestudy.service.facility.IFacilityService;
 import casestudy.service.facility.IFacilityTypeService;
 import casestudy.service.facility.IRentTypeService;
+import casestudy.service.impl.contract.AttachFacilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,6 +46,10 @@ public class ContractController {
 
     @Autowired
     private IEmployeeService employeeService;
+
+    @Autowired
+    private AttachFacilityService attachFacilityService;
+
 
     @GetMapping("/list")
     public String goPage(Model model,
@@ -82,26 +87,6 @@ public class ContractController {
         return "/contract/create";
     }
 
-    @GetMapping("/createNew")
-    public String createNew(Model model,
-                            @RequestParam(name = "quantity") String quantity) {
-
-
-        ContractDetail contractDetail = new ContractDetail();
-
-        List<Contract> contractList = contractService.findListAll();
-
-        model.addAttribute("contractList", contractList);
-
-        model.addAttribute("contractDetail", contractDetail);
-
-
-
-        contractDetail.setQuantity(quantity);
-        contracDetailService.save(contractDetail);
-        return "/contract/list";
-    }
-
     @PostMapping("/save")
     public String save(@ModelAttribute Contract contract) {
 
@@ -120,7 +105,6 @@ public class ContractController {
         model.addAttribute("customerList", customerList);
         model.addAttribute("facilityList", facilityList);
         model.addAttribute("employeeList", employeeList);
-
         model.addAttribute("contract", contractService.findById(id));
 
         return "/contract/edit";
@@ -133,16 +117,36 @@ public class ContractController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam(name = "id") Integer id) {
-        contractService.remove(id);
+    public String delete(@RequestParam(name = "id") Integer id,
+                         @RequestParam(name = "arr") Integer[] arr) {
+        for (Integer i=1;i<=arr.length;i++){
+            contractService.remove(arr[i]);
+        }
         return "redirect:/contract/list";
     }
+    @GetMapping("/themMoi/{id}")
+    public String create(Model model,@PathVariable int id) {
+
+        ContractDetail contractDetail = new ContractDetail();
+
+        model.addAttribute("attachFacilityList", attachFacilityService.findListAll());
+        model.addAttribute("ContractDetail", contractDetail);
+        model.addAttribute("contract", contractService.findById(id));
 
 
+        return "/contract/createContractDetail";
+    }
+
+    @PostMapping("/luu")
+    public String save(@ModelAttribute ContractDetail contractDetail) {
+
+        contracDetailService.save(contractDetail);
+
+        return "redirect:/contract/list";
+    }
     @ExceptionHandler(value = Exception.class)
     public String error() {
         return "/error";
     }
-
 
 }

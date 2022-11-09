@@ -22,21 +22,6 @@ public class BlogRestController {
     @Autowired
     private IBlogService blogService;
 
-//    @GetMapping(" ")
-//    public ResponseEntity<Page<Blog>> goPage(@PageableDefault(10) Pageable pageable,
-//                                             @RequestParam Optional<String> name,
-//                                             @RequestParam Optional<String> note) {
-//
-//        String keyName = name.orElse("");
-//        String keyNote = note.orElse("");
-//        Page<Blog> blogPage = blogService.findAll(pageable, keyName, keyNote);
-//        if (!blogPage.hasContent()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-//        return new ResponseEntity<>(blogPage, HttpStatus.OK);
-//    }
-
-
     @GetMapping(" ")
     public ResponseEntity<Page<Blog>> goPage(@PageableDefault(10) Pageable pageable,
                                              @RequestParam Optional<String> name) {

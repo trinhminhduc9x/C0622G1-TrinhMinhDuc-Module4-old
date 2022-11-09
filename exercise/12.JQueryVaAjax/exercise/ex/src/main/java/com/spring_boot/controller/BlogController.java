@@ -104,8 +104,6 @@ public class BlogController {
         return "/blog/index";
     }
 
-
-
     @ExceptionHandler(value = Exception.class)
     public String error() {
         return "/error";

@@ -136,3 +136,16 @@ VALUE (5,2,4),
  (1,1,3),
  (2,1,2),
  (2,12,2);
+
+SELECT 
+    *
+FROM
+    furama_minhduc.contract_detail
+    join
+    contract 
+    on contract.id=contract_detail.contract_id
+    join
+    attach_facility
+    on attach_facility.id=contract_detail.attach_facility_id
+WHERE
+    contract_id = 2
