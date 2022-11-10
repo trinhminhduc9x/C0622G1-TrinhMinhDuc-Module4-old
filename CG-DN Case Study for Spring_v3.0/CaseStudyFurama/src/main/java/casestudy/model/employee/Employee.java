@@ -27,7 +27,7 @@ public class Employee {
 
 
     @ManyToOne
-    @JoinColumn(name = "user_name",referencedColumnName = "user_name")
+    @JoinColumn(name = "user_name",referencedColumnName = "username")
     private User user;
 
     public Employee() {
@@ -162,4 +162,5 @@ public class Employee {
                 ", user=" + user +
                 '}';
     }
+
 }

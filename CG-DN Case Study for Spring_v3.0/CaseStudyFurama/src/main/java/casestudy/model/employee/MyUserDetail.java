@@ -1,4 +1,4 @@
-package com.spring_boot.model;
+package casestudy.model.employee;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +13,7 @@ public class MyUserDetail implements UserDetails {
 
     public MyUserDetail() {
     }
+
     public MyUserDetail(User user) {
         this.user = user;
     }

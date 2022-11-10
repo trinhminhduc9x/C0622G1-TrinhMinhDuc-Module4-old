@@ -60,25 +60,26 @@ VALUE ('Villa Beach Front',25000,1000000,10,'vip','Có hồ bơi',500,4,null,3,1
      ('Villa No Beach Front',22000,9000000,8,'normal','Có hồ bơi',300,3,null,3,1),
      ('House Princess 02',10000,4000000,5,'normal','Có thêm bếp nướng',null,2,null,3,2),
      ('Room Twin 02',3000,900000,2,'normal','Có tivi',null,null,'1 Xe máy',4,3);
+     
+     
+INSERT INTO `furama_minhduc`.`role` (`id`, `name`) VALUES ('1', 'ROLE_USER');
+INSERT INTO `furama_minhduc`.`role` (`id`, `name`) VALUES ('2', 'ROLE_ADMIN');
 
-
-INSERT INTO `furama_minhduc`.`role` (`role_id`, `role_name`) VALUES ('1', 'a');
-
-INSERT INTO `furama_minhduc`.`user` (`user_name`, `password`) VALUES ('a', 'a');
-
-INSERT INTO `furama_minhduc`.`user_role` (`user_name`, `role_id`) VALUES ('a', '1');
+INSERT INTO `furama_minhduc`.`user` (`username`, `is_enabled`, `password`) VALUES ('duc', b'1', '$2a$10$dnZ2zK7Oi0rlBAlnwn.06uDNq8YreNVt6mdlvG1UC2OrA2gE3RcXm');
+INSERT INTO `furama_minhduc`.`user` (`username`, `is_enabled`, `password`) VALUES ('vip ', b'1', '$2a$10$dnZ2zK7Oi0rlBAlnwn.06uDNq8YreNVt6mdlvG1UC2OrA2gE3RcXm');
+INSERT INTO `furama_minhduc`.`user` (`username`, `is_enabled`, `password`) VALUES ('admin', b'1', '$2a$10$dnZ2zK7Oi0rlBAlnwn.06uDNq8YreNVt6mdlvG1UC2OrA2gE3RcXm');
 
 INSERT INTO `furama_minhduc`.`employee` (`name`,`date_of_birth`,`id_card`,`salary`,`phone_number`,`email`,`address`,`position_id`,`education_degree_id`,`division_id`, `user_name`) 
-VALUE ('Nguyễn Văn Anh','1970-11-07', '456231786',10000000,'0901234121','annguyen@gMAIL.COM','295 Nguyễn Tất Thành, Đà Nẵng',1,3,1,'a'),
- ('Lê Văn Bình','1997-04-09', '654231234',7000000,'0934212314','binhlv@gmaIl.com','22 YÊN BÁI, Đà Nẵng',1,2,2,'a'),
- ('Hồ Thị Yến','1995-12-12', '999231723',14000000,'0412352315','thiyen@gMail.com','K234/11 Điện BiÊN PHỦ, GIa Lai',1,3,2,'a'),
- ('Võ Công Toản','1980-04-04', '123231365',17000000,'0374443232','toan0404@gmail.com','77 Hoàng DIệu, Quảng TrỊ',1,4,4,'a'),
- ('Nguyễn BỈnh Phát','1999-12-09', '454363232',6000000,'0902341231','PHATPhaT@gmail.com','43 Yên Bái, Đà Nẵng',2,1,1,'a'),
- ('Khúc NGUYỄN An Nghi','2000-11-08', '964542311',7000000,'0978653213','annghI20@GMAIl.Com','294 Nguyễn Tất ThànH, Đà Nẵng',2,3,3,'a'),
- ('NguYỄN HỮU Hà','1993-01-01', '534323231',8000000,'0941234553','nhh0101@gmail.com','4 NGUYỄN CHí Thanh, Huế',2,3,2,'a'),
- ('Nguyễn Hà ĐÔng','1989-09-03', '232414123',9000000,'0642123111','dOnghanguyen@gmail.com','111 HùnG VƯƠNG, HÀ Nội',2,4,4,'a'),
- ('Tòng Hoang','1982-09-03', '256781231',6000000,'0245144444','hoangtong@gmail.Com','213 Hàm Nghi, Đà Nẵng',2,4,4,'a'),
- ('NGuyễn Công Đạo','1994-01-08', '755434343',8000000,'0988767111','nguyencongdao@gmail.com','6 Hoà Khánh, Đồng Nai',2,3,2,'a');
+VALUE ('Nguyễn Văn Anh','1970-11-07', '456231786',10000000,'0901234121','annguyen@gMAIL.COM','295 Nguyễn Tất Thành, Đà Nẵng',1,3,1,'duc'),
+ ('Lê Văn Bình','1997-04-09', '654231234',7000000,'0934212314','binhlv@gmaIl.com','22 YÊN BÁI, Đà Nẵng',1,2,2,'duc'),
+ ('Hồ Thị Yến','1995-12-12', '999231723',14000000,'0412352315','thiyen@gMail.com','K234/11 Điện BiÊN PHỦ, GIa Lai',1,3,2,'duc'),
+ ('Võ Công Toản','1980-04-04', '123231365',17000000,'0374443232','toan0404@gmail.com','77 Hoàng DIệu, Quảng TrỊ',1,4,4,'duc'),
+ ('Nguyễn BỈnh Phát','1999-12-09', '454363232',6000000,'0902341231','PHATPhaT@gmail.com','43 Yên Bái, Đà Nẵng',2,1,1,'duc'),
+ ('Khúc NGUYỄN An Nghi','2000-11-08', '964542311',7000000,'0978653213','annghI20@GMAIl.Com','294 Nguyễn Tất ThànH, Đà Nẵng',2,3,3,'duc'),
+ ('NguYỄN HỮU Hà','1993-01-01', '534323231',8000000,'0941234553','nhh0101@gmail.com','4 NGUYỄN CHí Thanh, Huế',2,3,2,'duc'),
+ ('Nguyễn Hà ĐÔng','1989-09-03', '232414123',9000000,'0642123111','dOnghanguyen@gmail.com','111 HùnG VƯƠNG, HÀ Nội',2,4,4,'duc'),
+ ('Tòng Hoang','1982-09-03', '256781231',6000000,'0245144444','hoangtong@gmail.Com','213 Hàm Nghi, Đà Nẵng',2,4,4,'duc'),
+ ('NGuyễn Công Đạo','1994-01-08', '755434343',8000000,'0988767111','nguyencongdao@gmail.com','6 Hoà Khánh, Đồng Nai',2,3,2,'duc');
  
  UPDATE `furama_minhduc`.`employee` SET `id` = '1' WHERE (`id` = '11');
 UPDATE `furama_minhduc`.`employee` SET `id` = '2' WHERE (`id` = '12');

@@ -1,5 +1,6 @@
 package casestudy.dto.employee;
 
+import casestudy.model.employee.User;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
