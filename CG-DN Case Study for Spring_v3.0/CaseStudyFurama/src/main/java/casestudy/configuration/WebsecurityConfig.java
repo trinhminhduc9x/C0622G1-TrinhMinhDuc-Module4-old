@@ -63,8 +63,6 @@ public class WebsecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(1 * 24 * 60 * 60);
 
-
-
     }
 
     @Bean
