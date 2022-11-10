@@ -138,14 +138,18 @@ VALUE (5,2,4),
  (2,12,2);
 
 SELECT 
-    *
+    attach_facility.name nameFacility,
+    customer.nameCustomer
 FROM
     furama_minhduc.contract_detail
+        join
+    attach_facility 
+    on attach_facility.id=contract_detail.attach_facility_id
     join
     contract 
     on contract.id=contract_detail.contract_id
     join
-    attach_facility
-    on attach_facility.id=contract_detail.attach_facility_id
+    customer
+    on customer.id=contract.customer_id
 WHERE
-    contract_id = 2
+    customer_id = 3
